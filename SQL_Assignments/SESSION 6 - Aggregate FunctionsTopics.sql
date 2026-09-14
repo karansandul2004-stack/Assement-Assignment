@@ -28,7 +28,7 @@ values
 (10, 105, 295.00);
 
 SELECT 
-    user_id, SUM(amount)
+    user_id, SUM(amount) as total_amount
 FROM
     food_orders
 GROUP BY user_id;
@@ -82,7 +82,7 @@ VALUES
 (10, 105, 5.0);
 
 SELECT 
-    movie_id, ROUND(AVG(rating), 1)
+    movie_id, ROUND(AVG(rating), 1) as average_rating
 FROM
     bookmyshow_reviews
 GROUP BY movie_id;
@@ -108,8 +108,13 @@ VALUES
 (9, 104, 1800.00),
 (10, 105, 625.00);
 
-select * from paytm_transactions
-order by amount;
+SELECT 
+    user_id,
+    MIN(amount) minimum_amount,
+    MAX(amount) maximum_amount
+FROM
+    paytm_transactions
+group by user_id;
 
 -- 5.Given a table myntra_orders (columns: order_id, user_id, total_price), write an SQL query to display the total number of orders, the average order value (rounded to 2 decimals), and the highest order value for each user_id.<br><br><em><strong>Constraint:</strong> Use GROUP BY to get results per user.</em>
 
